@@ -96,7 +96,7 @@ fn find_min_max(x0: f32, x1: f32, x2: f32) -> (f32, f32) {
     (min, max)
 }
 
-fn planeBoxOverlap(normal: &Vector3<f32>, vert: &Vector3<f32>, maxbox: &Vector3<f32>) -> bool {
+fn plane_box_overlap(normal: &Vector3<f32>, vert: &Vector3<f32>, maxbox: &Vector3<f32>) -> bool {
     let mut vmin = Vector3::new(0.0f32, 0.0f32, 0.0f32);
     let mut vmax = Vector3::new(0.0f32, 0.0f32, 0.0f32);
 
@@ -345,7 +345,7 @@ fn triangle_box_overlap(
     }
 
     let normal = e0.cross(&e1);
-    if !planeBoxOverlap(&normal, &v0, &boxhalfsize) {
+    if !plane_box_overlap(&normal, &v0, &boxhalfsize) {
         return false;
     }
 
