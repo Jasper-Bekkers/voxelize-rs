@@ -1,0 +1,7 @@
+[package]
+name = "voxelize-rs"
+version = "0.1.0"
+authors = ["Jasper Bekkers <bekkers@gmail.com>"]
+
+[dependencies]
+nalgebra = "*"
