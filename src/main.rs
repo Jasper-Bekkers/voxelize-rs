@@ -375,13 +375,13 @@ fn voxelize(triangles: &Vec<Triangle>, size: &Vector3<f32>) {
                 for ix in 0..range_x {
                     let x = aabb.min.x + (ix as f32) * size.x;
 
-                    let aabb = Aabb {
+                    let local_aabb = Aabb {
                         min: Vector3::new(x - hs.x, y - hs.y, z - hs.z),
                         max: Vector3::new(x + hs.x, y + hs.y, z + hs.z),
                     };
 
-                    let halfsize = (aabb.max - aabb.min) * 0.5;
-                    let center = aabb.min + halfsize;
+                    let halfsize = (local_aabb.max - local_aabb.min) * 0.5;
+                    let center = local_aabb.min + halfsize;
 
                     if triangle_box_overlap(&center, &halfsize, &tri) {
                         println!("{}, {}, {}", x, y, z);
