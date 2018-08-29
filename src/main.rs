@@ -49,10 +49,6 @@ struct Triangle {
 }
 
 impl Triangle {
-    fn area(&self) -> f32 {
-        1f32
-    }
-
     fn new(p0: Vector3<f32>, p1: Vector3<f32>, p2: Vector3<f32>) -> Triangle {
         Triangle { p0, p1, p2 }
     }
@@ -100,7 +96,7 @@ fn plane_box_overlap(normal: &Vector3<f32>, vert: &Vector3<f32>, maxbox: &Vector
     let mut vmin = Vector3::new(0.0f32, 0.0f32, 0.0f32);
     let mut vmax = Vector3::new(0.0f32, 0.0f32, 0.0f32);
 
-    if (normal.x > 0.0) {
+    if normal.x > 0.0 {
         vmin.x = -maxbox.x - vert.x;
         vmax.x = maxbox.x - vert.x;
     } else {
@@ -108,7 +104,7 @@ fn plane_box_overlap(normal: &Vector3<f32>, vert: &Vector3<f32>, maxbox: &Vector
         vmax.x = -maxbox.x - vert.x;
     }
 
-    if (normal.y > 0.0) {
+    if normal.y > 0.0 {
         vmin.y = -maxbox.y - vert.y;
         vmax.y = maxbox.y - vert.y;
     } else {
@@ -116,7 +112,7 @@ fn plane_box_overlap(normal: &Vector3<f32>, vert: &Vector3<f32>, maxbox: &Vector
         vmax.y = -maxbox.y - vert.y;
     }
 
-    if (normal.z > 0.0) {
+    if normal.z > 0.0 {
         vmin.z = -maxbox.z - vert.z;
         vmax.z = maxbox.z - vert.z;
     } else {
@@ -150,7 +146,7 @@ fn axis_test_x01(
 
     let rad = fa * boxhalfsize.y + fb * boxhalfsize.z;
 
-    if (min > rad || max < -rad) {
+    if min > rad || max < -rad {
         return false;
     }
 
@@ -173,7 +169,7 @@ fn axis_test_x2(
 
     let rad = fa * boxhalfsize.y + fb * boxhalfsize.z;
 
-    if (min > rad || max < -rad) {
+    if min > rad || max < -rad {
         return false;
     }
 
@@ -196,7 +192,7 @@ fn axis_test_y02(
 
     let rad = fa * boxhalfsize.x + fb * boxhalfsize.z;
 
-    if (min > rad || max < -rad) {
+    if min > rad || max < -rad {
         return false;
     }
 
@@ -219,7 +215,7 @@ fn axis_test_y1(
 
     let rad = fa * boxhalfsize.x + fb * boxhalfsize.z;
 
-    if (min > rad || max < -rad) {
+    if min > rad || max < -rad {
         return false;
     }
 
@@ -242,7 +238,7 @@ fn axis_test_z12(
 
     let rad = fa * boxhalfsize.x + fb * boxhalfsize.y;
 
-    if (min > rad || max < -rad) {
+    if min > rad || max < -rad {
         return false;
     }
 
@@ -265,7 +261,7 @@ fn axis_test_z0(
 
     let rad = fa * boxhalfsize.x + fb * boxhalfsize.y;
 
-    if (min > rad || max < -rad) {
+    if min > rad || max < -rad {
         return false;
     }
 
