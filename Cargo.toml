@@ -2,6 +2,22 @@
 name = "voxelize-rs"
 version = "0.1.0"
 authors = ["Jasper Bekkers <bekkers@gmail.com>"]
+edition = "2018"
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/Jasper-Bekkers/voxelize-rs"
+repository = "https://github.com/Jasper-Bekkers/voxelize-rs"
+keywords = ["rendering", "voxel", "voxelize"]
+categories = ["rendering"]
+include = [
+    "src/*.rs",
+    "Cargo.toml",
+]
+documentation = "https://docs.rs/voxelize-rs"
+description = "Native rust library to voxelize a triangle soup"
+
+[badges]
+maintenance = { status = "actively-developed" }
 
 [dependencies]
-nalgebra = "*"
+nalgebra = "0.18.0"

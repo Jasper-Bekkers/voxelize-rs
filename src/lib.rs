@@ -1,21 +1,20 @@
-extern crate nalgebra;
+pub use nalgebra::Vector3;
+use std::f32;
 
-use nalgebra::Vector3;
-
-struct Aabb {
+pub struct Aabb {
     min: Vector3<f32>,
     max: Vector3<f32>,
 }
 
 impl Aabb {
-    fn new() -> Aabb {
+    pub fn new() -> Aabb {
         Aabb {
-            min: Vector3::new(1000f32, 1000f32, 1000f32),
-            max: Vector3::new(-1000f32, -1000f32, -1000f32),
+            min: Vector3::new(f32::INFINITY, f32::INFINITY, f32::INFINITY),
+            max: Vector3::new(f32::NEG_INFINITY, f32::NEG_INFINITY, f32::NEG_INFINITY),
         }
     }
 
-    fn expand(&mut self, p: &Vector3<f32>) {
+    pub fn expand(&mut self, p: &Vector3<f32>) {
         if self.min.x > p.x {
             self.min.x = p.x
         }
@@ -42,18 +41,18 @@ impl Aabb {
     }
 }
 
-struct Triangle {
+pub struct Triangle {
     p0: Vector3<f32>,
     p1: Vector3<f32>,
     p2: Vector3<f32>,
 }
 
 impl Triangle {
-    fn new(p0: Vector3<f32>, p1: Vector3<f32>, p2: Vector3<f32>) -> Triangle {
+    pub fn new(p0: Vector3<f32>, p1: Vector3<f32>, p2: Vector3<f32>) -> Triangle {
         Triangle { p0, p1, p2 }
     }
 
-    fn aabb(&self) -> Aabb {
+    pub fn aabb(&self) -> Aabb {
         let mut aabb = Aabb::new();
         aabb.expand(&self.p0);
         aabb.expand(&self.p1);
@@ -348,8 +347,9 @@ fn triangle_box_overlap(
     true
 }
 
-fn voxelize(triangles: &Vec<Triangle>, size: &Vector3<f32>) {
+pub fn voxelize(triangles: &Vec<Triangle>, size: &Vector3<f32>) -> Vec<Vector3<f32>> {
     let hs = size * 0.5;
+    let mut result = vec![];
     for tri in triangles {
         let mut aabb = tri.aabb();
 
@@ -380,20 +380,11 @@ fn voxelize(triangles: &Vec<Triangle>, size: &Vector3<f32>) {
                     let center = local_aabb.min + halfsize;
 
                     if triangle_box_overlap(&center, &halfsize, &tri) {
-                        println!("{}, {}, {}", x, y, z);
+                        result.push(Vector3::new(x, y, z));
                     }
                 }
             }
         }
     }
-}
-
-fn main() {
-    let tri = Triangle::new(
-        Vector3::new(0f32, 0f32, 0f32),
-        Vector3::new(0f32, 10f32, 0f32),
-        Vector3::new(0f32, 0f32, 10f32),
-    );
-
-    voxelize(&vec![tri], &Vector3::new(0.1, 0.1, 0.1));
+    result
 }
