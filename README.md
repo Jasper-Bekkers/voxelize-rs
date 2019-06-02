@@ -1,5 +1,6 @@
 voxelize-rs
 ========
+[![travis-ci.com](https://travis-ci.com/Jasper-Bekkers/voxelize-rs.svg?branch=master)](https://travis-ci.com/Jasper-Bekkers/voxelize-rs)
 [![Latest version](https://img.shields.io/crates/v/voxelize-rs.svg)](https://crates.io/crates/voxelize-rs)
 [![Documentation](https://docs.rs/voxelize-rs/badge.svg)](https://docs.rs/voxelize-rs)
 [![](https://tokei.rs/b1/github/Jasper-Bekkers/voxelize-rs)](https://github.com/Jasper-Bekkers/voxelize-rs)
